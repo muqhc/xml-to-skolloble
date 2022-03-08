@@ -1,13 +1,7 @@
 import io.github.muqhc.xmltoskolloble.xmlToSkolloble
 import org.dom4j.io.SAXReader
 
-class PrintField {
-    operator fun <T> T.unaryMinus() = this.also(::println)
-}
-
-fun println(init: PrintField.() -> Unit) = PrintField().let(init)
-
-fun main() = println {
+fun main() {
     val _xml = """
         |<?xml version="1.0" encoding="UTF-8"?>
         |<project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -80,6 +74,5 @@ fun main() = println {
         |    </build>
         |</project>
         |""".trimMargin()
-    -xmlToSkolloble(_xml)
-
+    xmlToSkolloble(_xml).let(::println)
 }

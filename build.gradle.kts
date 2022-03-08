@@ -71,7 +71,7 @@ publishing {
 
             pom {
                 name.set(rootProject.name)
-                description.set("the kotlin library providing DSL for Swing.")
+                description.set("simple library to convert .xml to .skolloble")
                 url.set("https://github.com/muqhc/${rootProject.name}")
 
                 licenses {
