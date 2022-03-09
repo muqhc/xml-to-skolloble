@@ -8,7 +8,8 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.muqhc:xml-to-skolloble:1.0.0")
+    implementation("io.github.muqhc:xml-to-skolloble:1.0.0") //Version 1 (with dom4j)
+    implementation("io.github.muqhc:xml-to-skolloble:2.0.0") //Version 2 (without dom4j) (is not implemented yet)
 }
 ```
 
