@@ -13,3 +13,11 @@ dependencies {
 ```
 
 ## [Example](src/test/kotlin/Test.kt)
+
+# Notice
+
+Version 1 is depend on [dom4j](https://github.com/dom4j/dom4j).
+
+If you are going to use Version 1, read [dom4j license](https://github.com/dom4j/dom4j/blob/master/LICENSE).
+
+Or you can use Version 2 future if you want to use without [dom4j](https://github.com/dom4j/dom4j).
