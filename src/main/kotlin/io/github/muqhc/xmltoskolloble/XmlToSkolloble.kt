@@ -13,7 +13,7 @@ fun xmlToSkolloble(element: Element, prefix: String = "", startP: String = prefi
     else if (element.isTextOnly)
         if (element.text.split("\n").count() == 1) "$startP${genElementTag(element)} - \"${element.text}\""
         else """
-           |$startP${genElementTag(element)} {${element.text.split("\n").joinToString("\n","\n") { "$prefix\"$it\"" }}
+           |$startP${genElementTag(element)} {${element.text.split("\n").joinToString("\n","\n") { "$prefix    \"$it\"" }}
            |$prefix}
         """.trimMargin()
     else if (element.isRootElement) "${genElementTag(element)}/ ${element.elements().joinToString("\n","\n") { xmlToSkolloble(it as Element, "$prefix    ") }}"
