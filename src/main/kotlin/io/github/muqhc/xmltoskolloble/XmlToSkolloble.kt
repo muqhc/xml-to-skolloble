@@ -19,7 +19,7 @@ internal fun xmlToSkolloble(element: Element, prefix: String = "", startP: Strin
         """.trimMargin()
 
 internal fun genElementTag(element: Element): String =
-    "${element.name}${if (element.namespace.name != null) "@"+element.namespace.name else ""}" +
+    "${element.name}${if (!element.namespace?.prefix.isNullOrEmpty()) "@"+element.namespace.prefix else ""}" +
             if (genElementAttr(element).isNotEmpty()) ": "+genElementAttr(element) else ""
 
 internal fun genElementAttr(element: Element): String =
