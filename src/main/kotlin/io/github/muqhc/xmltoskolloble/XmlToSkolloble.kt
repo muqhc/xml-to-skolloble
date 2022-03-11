@@ -6,7 +6,7 @@ import org.dom4j.Namespace
 import org.dom4j.io.SAXReader
 
 
-fun xmlToSkolloble(xml: String): String = xmlToSkolloble(SAXReader().read(xml.byteInputStream()).rootElement).replace("@/"","/"")
+fun xmlToSkolloble(xml: String): String = xmlToSkolloble(SAXReader().read(xml.byteInputStream()).rootElement)
 
 internal fun xmlToSkolloble(element: Element, prefix: String = "", startP: String = prefix): String =
     if (element.elements().isEmpty() && element.text.isEmpty()) "$startP${genElementTag(element)} \\"
@@ -34,5 +34,5 @@ internal fun genElementAttr(element: Element): String =
     }) +
     (if (element.attributeCount() == 0) emptyList()
     else (element.attributes() as List<Attribute>).map {
-        it.name+(if (it.namespace != null) "@"+it.namespace.prefix else "")+"\"${it.value}\""
+        it.name+(if (!it.namespace?.prefix.isNullOrEmpty()) "@"+it.namespace.prefix else "")+"\"${it.value}\""
     })).joinToString(" ")
