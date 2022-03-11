@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("dom4j:dom4j:1.6.1")
+    implementation("org.dom4j:dom4j:2.1.3")
 }
 
 tasks {
