@@ -10,7 +10,7 @@ fun xmlToSkolloble(xml: String): String = xmlToSkolloble(SAXReader().read(xml.by
 
 internal fun xmlToSkolloble(element: Element, prefix: String = "", startP: String = prefix): String =
     if (element.elements().isEmpty() && element.text.isEmpty()) "$startP${genElementTag(element)} \\"
-    else if (element.isTextOnly) "$startP${genElementTag(element)} - \"${element.text}\""
+    else if (element.isTextOnly) "$startP${genElementTag(element)} - `${element.text}`"
     else if (element.isRootElement) "${genElementTag(element)}/ ${element.elements().joinToString("\n","\n") { xmlToSkolloble(it as Element, "$prefix    ") }}"
     else if (element.elements().count() == 1) "$startP${genElementTag(element)} - ${xmlToSkolloble(element.elements().first() as Element,prefix, "")}"
     else """
@@ -25,9 +25,9 @@ internal fun genElementTag(element: Element): String =
 internal fun genElementAttr(element: Element): String =
     ((if (element.attributeCount() == 0 && element.declaredNamespaces().isEmpty()) emptyList()
     else (element.declaredNamespaces() as List<Namespace>).map {
-        (if (it.prefix.isNotEmpty()) it.prefix+"@" else "")+"xmlns\"${it.uri}\""
+        (if (it.prefix.isNotEmpty()) it.prefix+"@" else "")+"xmlns`${it.uri}`"
     }) +
     (if (element.attributeCount() == 0) emptyList()
     else (element.attributes() as List<Attribute>).map {
-        it.name+(if (!it.namespace?.prefix.isNullOrEmpty()) "@"+it.namespace.prefix else "")+"\"${it.value}\""
+        it.name+(if (!it.namespace?.prefix.isNullOrEmpty()) "@"+it.namespace.prefix else "")+"`${it.value}`"
     })).joinToString(" ")
