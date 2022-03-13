@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.muqhc:xml-to-skolloble:1.2.0")
+    implementation("io.github.muqhc:xml-to-skolloble:1.2.1")
 }
 ```
 
