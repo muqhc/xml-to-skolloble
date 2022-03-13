@@ -25,7 +25,7 @@ internal fun genElementTag(element: Element): String =
 internal fun genElementAttr(element: Element): String =
     ((if (element.attributeCount() == 0 && element.declaredNamespaces().isEmpty()) emptyList()
     else (element.declaredNamespaces() as List<Namespace>).map {
-        (if (it.prefix.isNotEmpty()) it.prefix+"@" else "")+"xmlns`${it.uri}`"
+        "xmlns${(if (it.prefix.isNotEmpty()) "<>"+it.prefix else "")}`${it.uri}`"
     }) +
     (if (element.attributeCount() == 0) emptyList()
     else (element.attributes() as List<Attribute>).map {
