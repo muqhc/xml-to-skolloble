@@ -9,9 +9,9 @@ import org.dom4j.io.SAXReader
 fun xmlToSkolloble(xml: String): String = xmlToSkolloble(SAXReader().read(xml.byteInputStream()).rootElement)
 
 internal fun xmlToSkolloble(element: Element, prefix: String = "", startP: String = prefix): String =
-    if (element.elements().isEmpty() && element.text.isEmpty()) "$startP${genElementTag(element)} \\"
+    if (element.elements().isEmpty() && element.text.isEmpty()) "$startP${genElementTag(element)} ;"
     else if (element.isTextOnly) "$startP${genElementTag(element)} - `${element.text}`"
-    else if (element.isRootElement) "${genElementTag(element)}/ ${element.elements().joinToString("\n","\n") { xmlToSkolloble(it as Element, "$prefix    ") }}"
+    else if (element.isRootElement) "${genElementTag(element)}/ ${element.elements().joinToString("\n","\n") { xmlToSkolloble(it as Element, prefix) }}"
     else if (element.elements().count() == 1) "$startP${genElementTag(element)} - ${xmlToSkolloble(element.elements().first() as Element,prefix, "")}"
     else """
            |$startP${genElementTag(element)} {${element.elements().joinToString("\n","\n") { xmlToSkolloble(it as Element, "$prefix    ") }}
