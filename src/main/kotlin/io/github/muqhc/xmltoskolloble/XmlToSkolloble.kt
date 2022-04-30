@@ -29,5 +29,5 @@ internal fun genElementAttr(element: Element): String =
     }) +
     (if (element.attributeCount() == 0) emptyList()
     else (element.attributes() as List<Attribute>).map {
-        (if (!it.namespace?.prefix.isNullOrEmpty()) it.namespace.prefix+"<>" else "")+it.name+"`${it.value}`"
+        (if (!it.namespace?.prefix.isNullOrEmpty()) it.namespace.prefix+"<>" else "")+it.name+(if (it.name == it.value) "" else "`${it.value}`")
     })).joinToString(" ")
